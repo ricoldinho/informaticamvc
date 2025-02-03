@@ -36,5 +36,11 @@ public class AlumnoService implements IAlumnoService {
     public Alumno getAlumnoById(Long id) {
         return alumnoRepository.findById(id).orElse(null);
     }
+
+
+    @Override
+    public void deleteAlumno(Long id) {
+        alumnoRepository.deleteById(id);
+    }
 	
 }

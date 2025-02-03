@@ -44,5 +44,15 @@ public class AlumnoController {
         return "alumnodetalle";
     }
 
+    @GetMapping("/eliminar/{id}")
+    public String eliminarAlumno(@PathVariable("id") Long id,Model model) {
+        
+        System.out.println("PROCEDEMOS A ELIMINAR AL ALUMNO: " + alumnoService.getAlumnoById(id));
+        alumnoService.deleteAlumno(id);
+        
+        return "redirect:/alumnos/list";
+    }
+
+
     
 }

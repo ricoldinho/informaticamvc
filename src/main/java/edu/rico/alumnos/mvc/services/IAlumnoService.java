@@ -7,4 +7,5 @@ import edu.rico.alumnos.mvc.entities.Alumno;
 public interface IAlumnoService {
 
     public List<Alumno> getAlumnos();
+    public Alumno saveAlumno(Alumno alumno);
 }

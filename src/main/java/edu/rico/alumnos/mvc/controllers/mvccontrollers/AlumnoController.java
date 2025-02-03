@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.rico.alumnos.mvc.entities.Alumno;
 import edu.rico.alumnos.mvc.services.IAlumnoService;
-
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/alumnos")
@@ -25,6 +24,17 @@ public class AlumnoController {
         List<Alumno> alumnos = alumnoService.getAlumnos();
         model.addAttribute("alumnos", alumnos);
         return "alumnosindex";
+    }
+
+    @GetMapping("/form")
+    public String desplegarFormulario() {
+        return "alumnosform";
+    }
+    
+    @PostMapping("/save")
+    public String guardarAlumno(Alumno alumno) {
+        System.out.println("ALUMNO GUARDADO => " + alumnoService.saveAlumno(alumno));
+        return "redirect:/alumnos/list";
     }
     
 

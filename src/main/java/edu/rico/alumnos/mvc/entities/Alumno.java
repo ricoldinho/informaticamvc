@@ -52,6 +52,7 @@ public class Alumno {
         this.fotoDni = fotoDni;
     }
 
+    
 
 
     public String getNombre() {
@@ -115,6 +116,14 @@ public class Alumno {
         return "Alumno [nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
                 + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", disposicion=" + disposicion
                 + ", fotoDni=" + fotoDni + "]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     

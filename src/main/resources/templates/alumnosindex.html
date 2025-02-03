@@ -12,19 +12,15 @@
             <th>Nombre</th>
             <th>Apellido1</th>
             <th>Apellido2</th>
-            <th>FechaNacimiento</th>
-            <th>Genero</th>
-            <th>Disposicion</th>
             <th>Foto DNI</th>
+            <th></th>
         </tr>
         <tr th:each="alumno : ${alumnos}">
             <td th:text="${alumno.nombre}"></td>
             <td th:text="${alumno.apellido1}"></td>
             <td th:text="${alumno.apellido2}"></td>
-            <td th:text="${alumno.fechaNacimiento}"></td>
-            <td th:text="${alumno.genero==T(edu.rico.alumnos.mvc.entities.enumerated.Genero).MUJER ? 'M' : 'H'}"></td>
-            <td th:text="${alumno.disposicion}"></td>
             <td><img th:src="@{/images/{img} (img=${alumno.fotoDni})}" width="25" height="25" alt="img"></td>
+            <td><a th:href="@{/alumnos/detalle/{id} (id=${alumno.id})}" class="btn btn-primary">Detalle</a></td>
         </tr>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

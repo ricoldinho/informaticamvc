@@ -30,5 +30,11 @@ public class AlumnoService implements IAlumnoService {
     public Alumno saveAlumno(Alumno alumno) {
         return alumnoRepository.save(alumno);
     }
+
+
+    @Override
+    public Alumno getAlumnoById(Long id) {
+        return alumnoRepository.findById(id).orElse(null);
+    }
 	
 }

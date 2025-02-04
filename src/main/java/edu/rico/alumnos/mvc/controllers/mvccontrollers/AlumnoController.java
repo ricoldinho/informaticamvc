@@ -1,5 +1,6 @@
 package edu.rico.alumnos.mvc.controllers.mvccontrollers;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.rico.alumnos.mvc.entities.Alumno;
+import edu.rico.alumnos.mvc.entities.enumerated.Disposicion;
+import edu.rico.alumnos.mvc.entities.enumerated.Genero;
 import edu.rico.alumnos.mvc.services.IAlumnoService;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -40,6 +43,8 @@ public class AlumnoController {
     
     @GetMapping("/detalle/{id}")
     public String detalleAlumno(@PathVariable("id") Long id,Model model) {
+        model.addAttribute("generos", Genero.values());
+        model.addAttribute("disposiciones", Disposicion.values());
         model.addAttribute("alumno", alumnoService.getAlumnoById(id));
         return "alumnodetalle";
     }

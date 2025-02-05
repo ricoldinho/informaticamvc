@@ -1,17 +1,23 @@
 package edu.rico.alumnos.mvc.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import edu.rico.alumnos.mvc.entities.enumerated.Disposicion;
 import edu.rico.alumnos.mvc.entities.enumerated.Genero;
 import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +43,9 @@ public class Alumno {
     private Disposicion disposicion;
     @Column(name = "foto_dni", length = 255, nullable = true)
     private String fotoDni;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Ordenador ordenador;
 
     public Alumno() {
     }
@@ -113,9 +122,9 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno [nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
+        return "Alumno [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
                 + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", disposicion=" + disposicion
-                + ", fotoDni=" + fotoDni + "]";
+                + ", fotoDni=" + fotoDni + ", ordenador=" + ordenador + "]";
     }
 
     public Long getId() {
@@ -126,6 +135,15 @@ public class Alumno {
         this.id = id;
     }
 
+    public Ordenador getOrdenador() {
+        return ordenador;
+    }
+
+    public void setOrdenador(Ordenador ordenador) {
+        this.ordenador = ordenador;
+    }
+
+    
     
 
 }

@@ -10,4 +10,5 @@ public interface IAlumnoService {
     public Alumno saveAlumno(Alumno alumno);
     public Alumno getAlumnoById(Long id);
     public void deleteAlumno(Long id);
+    public void deleteAsignaturaDeAlumno(Long idAlumno, Long idAsignatura);
 }

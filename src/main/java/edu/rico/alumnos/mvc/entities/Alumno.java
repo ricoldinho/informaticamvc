@@ -15,6 +15,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -46,6 +48,12 @@ public class Alumno {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Ordenador ordenador;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "alumnos_asignaturas", joinColumns =
+     @JoinColumn(name = "alumno_id"), inverseJoinColumns = 
+     @JoinColumn(name = "asignatura_id"))
+    private List<Asignatura> asignaturas;
 
     public Alumno() {
     }
@@ -120,12 +128,6 @@ public class Alumno {
         this.fotoDni = fotoDni;
     }
 
-    @Override
-    public String toString() {
-        return "Alumno [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
-                + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", disposicion=" + disposicion
-                + ", fotoDni=" + fotoDni + ", ordenador=" + ordenador + "]";
-    }
 
     public Long getId() {
         return id;
@@ -141,6 +143,21 @@ public class Alumno {
 
     public void setOrdenador(Ordenador ordenador) {
         this.ordenador = ordenador;
+    }
+
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
+                + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", disposicion=" + disposicion
+                + ", fotoDni=" + fotoDni + ", ordenador=" + ordenador + ", asignaturas=" + asignaturas + "]";
     }
 
     

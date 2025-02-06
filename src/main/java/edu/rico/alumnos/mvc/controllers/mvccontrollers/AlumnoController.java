@@ -60,6 +60,13 @@ public class AlumnoController {
         return "redirect:/alumnos/list";
     }
 
+    @GetMapping("/{idAlumno}/asignatura/{idAsignatura}")
+    public String eliminarAsignaturaDeAlumno(@PathVariable("idAlumno") Long idAlumno, @PathVariable("idAsignatura") Long idAsignatura ,Model model) {
+        System.out.println("ASIGNATURAS DEL ALUMNO: " + alumnoService.getAlumnoById(idAlumno));
+        alumnoService.deleteAsignaturaDeAlumno(idAlumno, idAsignatura);
+        return "redirect:/alumnos/detalle/" + idAlumno;
+    }
+
 
     
 }

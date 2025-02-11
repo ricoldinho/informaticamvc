@@ -5,7 +5,6 @@ import java.util.List;
 
 import edu.rico.alumnos.mvc.entities.enumerated.Disposicion;
 import edu.rico.alumnos.mvc.entities.enumerated.Genero;
-import jakarta.annotation.Generated;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,9 +14,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -48,12 +44,8 @@ public class Alumno {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Ordenador ordenador;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "alumnos_asignaturas", joinColumns =
-     @JoinColumn(name = "alumno_id"), inverseJoinColumns = 
-     @JoinColumn(name = "asignatura_id"))
-    private List<Asignatura> asignaturas;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "alumno")
+    private List<Matricula> matriculas;
 
     public Alumno() {
     }
@@ -145,20 +137,22 @@ public class Alumno {
         this.ordenador = ordenador;
     }
 
-    public List<Asignatura> getAsignaturas() {
-        return asignaturas;
+    public List<Matricula> getMatriculas() {
+        return matriculas;
     }
 
-    public void setAsignaturas(List<Asignatura> asignaturas) {
-        this.asignaturas = asignaturas;
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
 
     @Override
     public String toString() {
         return "Alumno [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
                 + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", disposicion=" + disposicion
-                + ", fotoDni=" + fotoDni + ", ordenador=" + ordenador + ", asignaturas=" + asignaturas + "]";
+                + ", fotoDni=" + fotoDni + ", ordenador=" + ordenador + ", matriculas=" + matriculas + "]";
     }
+
+    
 
     
     

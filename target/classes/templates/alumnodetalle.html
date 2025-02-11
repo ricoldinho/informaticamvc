@@ -37,16 +37,20 @@
           </div>
         </div>
         <div class="col-5">
-          <h1>LISTA DE ASIGNATURAS</h1>
+          <h1>LISTA DE MATRICULAS</h1>
           <table class="table table-striped">
             <tr>
               <th>Nombre</th>
               <th>Abreviatura</th>
+              <th>Curso</th>
+              <th>Nota</th>
             </tr>
-            <tr th:each="asignatura : ${alumno.asignaturas}">
-              <td th:text="${asignatura.nombre}"></td>
-              <td th:text="${asignatura.abreviatura}"></td>
-              <td><a th:href="@{/alumnos/{idAlumno}/asignatura/{idAsignatura} (idAlumno=${alumno.id} , idAsignatura=${asignatura.id})}" class="btn btn-danger">Eliminar</a></td>
+            <tr th:each="matricula : ${alumno.matriculas}">
+              <td th:text="${matricula.asignatura.nombre}"></td>
+              <td th:text="${matricula.asignatura.abreviatura}"></td>
+              <td th:text="${matricula.curso}"></td>
+              <td th:text="${matricula.nota}"></td>
+              <td><a th:href="@{/alumnos/{idAlumno}/matricula/{idMatricula} (idAlumno=${alumno.id} , idMatricula=${matricula.id})}" class="btn btn-danger">Eliminar</a></td>
             </tr>
           </table>
         </div>

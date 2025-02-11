@@ -4,12 +4,22 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+/*
+ * TODO: CREAR UNA PLANTILLA PARA VISUALIZAR EN UNA TABLA LAS ASIGNATURAS asignaturasList.html
+ * TENER UN FORMULARIO PARA GUARDAR UNA ASIGNATURA asignaturasForm.html
+ * TENER UNA PLANTILLA PARA EDITAR UNA ASIGNATURA asignaturasEdit.html
+ * QUE EN asignaturasList.html TENGAMOS UN BOTON "Ver alumnos" PARA CADA ASIGNATURA, SI PULSAMOS EL BOTON NOS LLEVARA
+ * A asignaturasAlumnos.html donde veremos todos los alumnos que tienen esa asignatura en una CARD
+ */
 @Entity
 @Table(name = "asignaturas")
 public class Asignatura {
@@ -21,8 +31,8 @@ public class Asignatura {
     private String nombre;
     @Column(name = "abreviatura", length = 5, nullable = false, unique = true)
     private String abreviatura;
-    @ManyToMany(mappedBy = "asignaturas")
-    private List<Alumno> alumnos; 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "asignatura")
+    private List<Matricula> matriculas; 
     
     public Asignatura() {
     }
@@ -56,10 +66,21 @@ public class Asignatura {
         this.id = id;
     }
 
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
     @Override
     public String toString() {
-        return "Asignatura [id=" + id + ", nombre=" + nombre + ", abreviatura=" + abreviatura + "]";
+        return "Asignatura [id=" + id + ", nombre=" + nombre + ", abreviatura=" + abreviatura + ", matriculas="
+                + matriculas + "]";
     }
+
+   
 
   
 }

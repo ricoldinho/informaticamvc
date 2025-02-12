@@ -49,11 +49,7 @@ public class AlumnoService implements IAlumnoService {
 
     @Override
     public void deleteAsignaturaDeAlumno(Long idAlumno, Long idAsignatura) {
-        Alumno alumnoBd = alumnoRepository.findById(idAlumno).orElseThrow(() -> new EntityNotFoundException("Alumno no encontrado en la BD"));
-        Asignatura asignaturaBd = asignaturaRepository.findById(idAsignatura).orElseThrow(() -> new EntityNotFoundException("Asignatura no encontrada en la BD"));
-        alumnoBd.getAsignaturas().removeIf((asignatura) -> asignatura.getId().equals(asignaturaBd.getId()));
-        System.out.println("ALUMNO CON ASIGNATURA ELIMINADA => " + alumnoBd);
-        alumnoRepository.save(alumnoBd);
+       
     }
 	
 }

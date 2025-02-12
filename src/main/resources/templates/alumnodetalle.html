@@ -50,7 +50,7 @@
               <td th:text="${matricula.asignatura.abreviatura}"></td>
               <td th:text="${matricula.curso}"></td>
               <td th:text="${matricula.nota}"></td>
-              <td><a th:href="@{/alumnos/{idAlumno}/matricula/{idMatricula} (idAlumno=${alumno.id} , idMatricula=${matricula.id})}" class="btn btn-danger">Eliminar</a></td>
+              <td><a th:href="@{/matriculas/eliminar/{idMatricula} (idMatricula=${matricula.id})}" class="btn btn-danger">Eliminar</a></td>
             </tr>
           </table>
         </div>
